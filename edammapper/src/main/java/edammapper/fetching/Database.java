@@ -137,6 +137,10 @@ public class Database {
 		db.commit();
 	}
 
+	public void close() {
+		db.close();
+	}
+
 	public void compact() {
 		db.getStore().compact();
 	}
