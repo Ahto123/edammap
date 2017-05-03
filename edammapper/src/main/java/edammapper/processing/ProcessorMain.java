@@ -167,6 +167,8 @@ public class ProcessorMain {
 		getWebpageUrlsFromFile(queryPath, type).stream()
 			.filter(url -> !db.containsWebpage(url))
 			.forEach(url -> db.putWebpageCommit(url, fetcher.getWebpage(url)));
+		db.commit();
+		db.close();
 	}
 
 	private static void addMissingPublicationsFromFile(String database, String queryPath, QueryType type) throws IOException, ParseException, XMLStreamException, FactoryConfigurationError {
@@ -175,6 +177,8 @@ public class ProcessorMain {
 		getPublicationIdsFromFile(queryPath, type).stream()
 			.filter(id -> !db.containsPublication(id))
 			.forEach(id -> db.putPublicationCommit(id, fetcher.getPublication(id)));
+		db.commit();
+		db.close();
 	}
 
 	private static void addMissingDocsFromFile(String database, String queryPath, QueryType type) throws IOException, ParseException, XMLStreamException, FactoryConfigurationError {
@@ -183,6 +187,8 @@ public class ProcessorMain {
 		getDocUrlsFromFile(queryPath, type).stream()
 			.filter(url -> !db.containsDoc(url))
 			.forEach(url -> db.putDocCommit(url, fetcher.getWebpage(url)));
+		db.commit();
+		db.close();
 	}
 
 	private static void addAllMissingFromFile(String database, String queryPath, QueryType type) throws IOException, ParseException, XMLStreamException, FactoryConfigurationError {
