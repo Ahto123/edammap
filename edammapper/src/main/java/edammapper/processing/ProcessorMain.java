@@ -434,6 +434,11 @@ public class ProcessorMain {
 		new Database(database).compact();
 	}
 
+	private static void dumpDatabase(String database) throws FileNotFoundException, DBException {
+		Database db = new Database(database);
+		System.out.print(db.dump());
+	}
+
 	private static void makeQueryIdf(String queryPath, QueryType type, String database, String outputPath, ProcessorMainArgs args) throws IOException, ParseException, XMLStreamException, FactoryConfigurationError {
 		ProcessorArgs processorArgs = new ProcessorArgs();
 		processorArgs.setFetchingDisabled(true);
@@ -675,6 +680,10 @@ public class ProcessorMain {
 			compactDatabase(args.compactDatabase);
 		}
 
+		if (args.dumpDatabase != null) {
+			dumpDatabase(args.dumpDatabase);
+		}
+
 		if (args.makeQueryIdf != null) {
 			makeQueryIdf(args.makeQueryIdf.get(0), QueryType.valueOf(args.makeQueryIdf.get(1)), args.makeQueryIdf.get(2), args.makeQueryIdf.get(3), args);
 		}
@@ -685,5 +694,6 @@ public class ProcessorMain {
 		if (args.printQueryIdfTop != null) {
 			printQueryIdfTop(args.printQueryIdfTop.get(0), Long.parseLong(args.printQueryIdfTop.get(1)));
 		}
+
 	}
 }

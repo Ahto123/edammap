@@ -194,6 +194,9 @@ public class ProcessorMainArgs {
 	@Parameter(names = { "--compact-database" }, description = "String database")
 	String compactDatabase = null;
 
+	@Parameter(names = { "--dump-database" }, description = "String databaset")
+	String dumpDatabase = null;
+
 	@Parameter(names = { "--make-query-idf" }, arity = 4, description = "String queryPath, QueryType type, String database, String outputPath")
 	List<String> makeQueryIdf = null;
 

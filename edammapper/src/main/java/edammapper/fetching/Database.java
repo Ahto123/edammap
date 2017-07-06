@@ -49,6 +49,8 @@ public class Database {
 		db.commit();
 	}
 
+
+
 	public String putWebpage(String webpageUrl, String webpage) {
 		return webpages.put(webpageUrl, webpage);
 	}
@@ -131,6 +133,45 @@ public class Database {
 
 	public String getDoc(String docUrl) {
 		return docs.get(docUrl);
+	}
+
+	public String dump() {
+		Set<String> webpageUrls = this.getWebpageUrls();
+		Set<String> publicationIds = this.getPublicationIds();
+		Set<String> docUrls = this.getDocUrls();
+
+		StringBuilder result = new StringBuilder();
+
+		result.append("---------- WEBPAGES ----------");
+
+		int i = 0;
+		for (String webpageUrl : webpageUrls) {
+			result.append(webpageUrl).append("\n").append(this.getWebpage(webpageUrl)).append("\n\n");
+			i += 1;
+		}
+		result.append("Total number of webpages: ").append(String.valueOf(i));
+		result.append("\n\n--------------------\n\n");
+
+
+		result.append("---------- PUBLICATIONS ----------");
+
+		i = 0;
+		for (String publicationId : publicationIds) {
+			result.append(publicationId).append("\n").append(this.getWebpage(publicationId)).append("\n\n");
+			i += 1;
+		}
+		result.append("Total number of publications: ").append(String.valueOf(i));
+		result.append("\n\n--------------------\n\n");
+
+		result.append("---------- DOCS ----------");
+		for (String docUrl : docUrls) {
+			result.append(docUrl).append("\n").append(this.getWebpage(docUrl)).append("\n\n");
+			i += 1;
+		}
+		result.append("Total number of docs: ").append(String.valueOf(i));
+		result.append("\n\n--------------------\n\n");
+
+		return result.toString();
 	}
 
 	public void commit() {
