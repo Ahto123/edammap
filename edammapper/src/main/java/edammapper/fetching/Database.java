@@ -142,31 +142,39 @@ public class Database {
 
 		StringBuilder result = new StringBuilder();
 
-		result.append("---------- WEBPAGES ----------");
+		result.append("---------- WEBPAGES ----------\n");
 
 		int i = 0;
 		for (String webpageUrl : webpageUrls) {
-			result.append(webpageUrl).append("\n").append(this.getWebpage(webpageUrl)).append("\n\n");
-			i += 1;
+			if (this.containsWebpage(webpageUrl)) {
+				result.append(webpageUrl).append("\n").append(this.getWebpage(webpageUrl)).append("\n\n");
+				i += 1;
+			}
 		}
 		result.append("Total number of webpages: ").append(String.valueOf(i));
 		result.append("\n\n--------------------\n\n");
 
 
-		result.append("---------- PUBLICATIONS ----------");
+		result.append("---------- PUBLICATIONS ----------\n");
 
 		i = 0;
 		for (String publicationId : publicationIds) {
-			result.append(publicationId).append("\n").append(this.getWebpage(publicationId)).append("\n\n");
-			i += 1;
+			if (this.containsPublication(publicationId)) {
+				result.append(publicationId).append("\n").append(this.getPublication(publicationId)).append("\n\n");
+				i += 1;
+			}
 		}
 		result.append("Total number of publications: ").append(String.valueOf(i));
 		result.append("\n\n--------------------\n\n");
 
-		result.append("---------- DOCS ----------");
+		result.append("---------- DOCS ----------\n");
+
+		i = 0;
 		for (String docUrl : docUrls) {
-			result.append(docUrl).append("\n").append(this.getWebpage(docUrl)).append("\n\n");
-			i += 1;
+			if (this.containsDoc(docUrl)) {
+				result.append(docUrl).append("\n").append(this.getDoc(docUrl)).append("\n\n");
+				i += 1;
+			}
 		}
 		result.append("Total number of docs: ").append(String.valueOf(i));
 		result.append("\n\n--------------------\n\n");
